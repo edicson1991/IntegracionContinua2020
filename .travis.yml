@@ -29,16 +29,9 @@ env :
 matriz :
   excluir :
     - php : hhvm
-      env : DB = sql   
+      env : DB = pgsql   # El controlador PDO para pgsql no es compatible con HHVM (instalación de terceros para soporte)
   allow_failures :
     - php : 7.0
     - php : hhvm
 
-
-# omitiendo "script:" por defecto será phpunit
-# usa la variable $ DB env para determinar el phpunit.xml a usar
-script : phpunit --configuration phpunit_ $ DB.xml --coverage-text
-
-# configurar notificaciones (correo electrónico, IRC, fogata, etc.)
-notificaciones :
-  irc : "  "
+# ejecuta cualquier número de scripts antes de la ejecución de la prueba, los env personalizados están disponibles como variables
